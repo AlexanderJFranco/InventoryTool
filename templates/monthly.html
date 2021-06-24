@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+
+.styled-table  {
+table-layout:fixed;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width:100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    word-wrap: break-word;
+}
+input[type="date"] {
+    position: relative;
+}
+
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+}
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+/* create a new arrow, because we are going to mess up the native one
+see "List of symbols" below if you want another, you could also try to add a font-awesome icon.. */
+input[type="date"]:after {
+    content: "\25BC";
+    color: #555;
+    padding: 0 5px;
+}
+
+/* change color of symbol on hover */
+input[type="date"]:hover:after {
+    color: #bf1400;
+}
+
+      input {
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+        border-bottom-style: groove;
+        background-color: transparent;
+      }
+
+/* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+}
+
+/* adjust increase/decrease button */
+input[type="date"]::-webkit-inner-spin-button {
+    z-index: 1;
+}
+
+ /* adjust clear button */
+ input[type="date"]::-webkit-clear-button {
+     z-index: 1;
+ }
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+#JAN, #FEB, #MAR, #APR , #MAY, #JUN, #JUL, #AUG, #SEP, #OCT, #NOV, #DEC, #hide{
+  display: none;
+}
+#JUN{
+  display: none;
+}
+
+::placeholder {
+  color: black;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color: black;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+ color: black;
+}
+
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript" src="{{url_for('static', filename='monthly.js')}}"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Monthly Overview</title>
+</head>
+
+<div class="topnav">
+  <a  href="/">Service Overview</a>
+  <a class="active" href="/Monthly">Monthly Servicing</a>
+  <a href="/addCustomer">Add Customer</a>
+  <a href="/removeCustomer">Remove Customer</a>
+  <a href="/instructions">Instructions</a>
+</div>
+
+
+<br><br>
+
+<button class="button button1" onclick="ShowJan()">January</button>
+<button class="button  button1" onclick="ShowFeb()">February</button>
+<button class="button button1" onclick="ShowMar()">March</button>
+<button class="button button1" onclick="ShowApr()">April</button>
+<button class="button button1" onclick="ShowJun()">June</button>
+<button class="button button1" onclick="ShowJul()">July</button>
+<button class="button button1" onclick="ShowAug()">August</button>
+<button class="button button1" onclick="ShowSep()">September</button>
+<button class="button button1" onclick="ShowOct()">October</button>
+<button class="button button1" onclick="ShowNov()">November</button>
+<button class="button button1" onclick="ShowDec()">December</button>
+
+    <div id = "JAN">
+    <table class="styled-table">
+      <thead>
+      <tr>
+    <th>NAME</th>
+    <th>January</th>
+    <th>Input Date</th>
+    <th>Notes</th>
+    <th>Service Charge</th>
+    <th>Month's Payment</th>
+    <th>Month's Balance</th>
+    <th>Total Balance</th>
+    <th>Edit Entry</th>
+  </tr>
+      </thead>
+    {% set count = namespace(value=0) %}
+        {% for i in range(iter)%}
+     {% for item in data %}
+
+   <tr>
+       <form method ='post'>
+           <div action = "{{url_for('Months')}}">
+                 <input id ="hide" type="text"  name="index" value="{{count.value}}">
+                 <input id ="hide" type="text"  name="mon" value="JAN">
+               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['JAN']}}</textarea></th>
+       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
+       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" placeholder="${{data[item][count.value]['JANP']}}"></th>
+       <th>${{data[item][count.value]['JANB']}}</th>
+       <th>${{data[item][count.value]['Balance']}}</th>
+       <th><input type="submit" name ="sub">    </th>
+       </div>
+       </form>
+   </tr>
+          {% set count.value = count.value + 1 %}
+{% endfor %}
+{% endfor %}
+</table>
+    </div>
+
+<div id = "FEB">
+    <table class="styled-table">
+      <thead>
+      <tr>
+    <th>NAME</th>
+    <th>February</th>
+    <th>Input Date</th>
+    <th>Notes</th>
+    <th>Service Charge</th>
+    <th>Month's Payment</th>
+    <th>Month's Balance</th>
+    <th>Total Balance</th>
+    <th>Edit Entry</th>
+  </tr>
+      </thead>
+    {% set count = namespace(value=0) %}
+        {% for i in range(iter)%}
+     {% for item in data %}
+
+   <tr>
+       <form method ='post'>
+           <div action = "{{url_for('Months')}}">
+                 <input id ="hide" type="text"  name="index" value="{{count.value}}">
+                 <input id ="hide" type="text"  name="mon" value="FEB">
+               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['FEB']}}</textarea></th>
+       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
+       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" placeholder="${{data[item][count.value]['FEBP']}}"></th>
+       <th>${{data[item][count.value]['FEBB']}}</th>
+       <th>${{data[item][count.value]['Balance']}}</th>
+       <th><input type="submit" name ="sub">    </th>
+       </div>
+       </form>
+   </tr>
+          {% set count.value = count.value + 1 %}
+{% endfor %}
+{% endfor %}
+</table>
+</div>
+
+<div id = "MAR">
+    <table class="styled-table">
+      <thead>
+      <tr>
+    <th>NAME</th>
+    <th>March</th>
+    <th>Input Date</th>
+    <th>Notes</th>
+    <th>Service Charge</th>
+    <th>Month's Payment</th>
+    <th>Month's Balance</th>
+    <th>Total Balance</th>
+    <th>Edit Entry</th>
+  </tr>
+      </thead>
+    {% set count = namespace(value=0) %}
+        {% for i in range(iter)%}
+     {% for item in data %}
+
+   <tr>
+       <form method ='post'>
+           <div action = "{{url_for('Months')}}">
+                 <input id ="hide" type="text"  name="index" value="{{count.value}}">
+                 <input id ="hide" type="text"  name="mon" value="MAR">
+               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['MAR']}}</textarea></th>
+       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
+       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" placeholder="${{data[item][count.value]['MARP']}}"></th>
+       <th>${{data[item][count.value]['MARB']}}</th>
+       <th>${{data[item][count.value]['Balance']}}</th>
+       <th><input type="submit" name ="sub">    </th>
+       </div>
+       </form>
+   </tr>
+          {% set count.value = count.value + 1 %}
+{% endfor %}
+{% endfor %}
+</table>
+</div>
+
+<div id = "APR">
+    <table class="styled-table">
+      <thead>
+      <tr>
+    <th>NAME</th>
+    <th>April</th>
+    <th>Input Date</th>
+    <th>Notes</th>
+    <th>Service Charge</th>
+    <th>Month's Payment</th>
+    <th>Month's Balance</th>
+    <th>Total Balance</th>
+    <th>Edit Entry</th>
+  </tr>
+      </thead>
+    {% set count = namespace(value=0) %}
+        {% for i in range(iter)%}
+     {% for item in data %}
+
+   <tr>
+       <form method ='post'>
+           <div action = "{{url_for('Months')}}">
+                 <input id ="hide" type="text"  name="index" value="{{count.value}}">
+                 <input id ="hide" type="text"  name="mon" value="APR">
+               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['APR']}}</textarea></th>
+       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
+       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" placeholder="${{data[item][count.value]['APRP']}}"></th>
+       <th>${{data[item][count.value]['APRB']}}</th>
+       <th>${{data[item][count.value]['Balance']}}</th>
+       <th><input type="submit" name ="sub">    </th>
+       </div>
+       </form>
+   </tr>
+          {% set count.value = count.value + 1 %}
+{% endfor %}
+{% endfor %}
+</table>
+</div>
+
+<div id = "MAY">
+    <table class="styled-table">
+      <thead>
+      <tr>
+    <th>NAME</th>
+    <th>May</th>
+    <th>Input Date</th>
+    <th>Notes</th>
+    <th>Service Charge</th>
+    <th>Month's Payment</th>
+    <th>Month's Balance</th>
+    <th>Total Balance</th>
+    <th>Edit Entry</th>
+  </tr>
+      </thead>
+    {% set count = namespace(value=0) %}
+        {% for i in range(iter)%}
+     {% for item in data %}
+
+   <tr>
+       <form method ='post'>
+           <div action = "{{url_for('Months')}}">
+                 <input id ="hide" type="text"  name="index" value="{{count.value}}">
+                 <input id ="hide" type="text"  name="mon" value="MAY">
+               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['MAY']}}</textarea></th>
+       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
+       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" placeholder="${{data[item][count.value]['MAYP']}}"></th>
+       <th>${{data[item][count.value]['MAYB']}}</th>
+       <th>${{data[item][count.value]['Balance']}}</th>
+       <th><input type="submit" name ="sub">    </th>
+       </div>
+       </form>
+   </tr>
+          {% set count.value = count.value + 1 %}
+{% endfor %}
+{% endfor %}
+</table>
+</div>
+
+<div id ="JUN">
+    <table class="styled-table">
+      <thead>
+      <tr>
+    <th>NAME</th>
+    <th>June</th>
+    <th>Input Date</th>
+    <th>Notes</th>
+    <th>Service Charge</th>
+    <th>Month's Payment</th>
+    <th>Month's Balance</th>
+    <th>Total Balance</th>
+    <th>Edit Entry</th>
+  </tr>
+      </thead>
+    {% set count = namespace(value=0) %}
+        {% for i in range(iter)%}
+     {% for item in data %}
+
+   <tr>
+       <form method ='post'>
+           <div action = "{{url_for('Months')}}">
+                 <input id ="hide" type="text"  name="index" value="{{count.value}}">
+                 <input id ="hide" type="text"  name="mon" value="JUN">
+               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['JUN']}}</textarea></th>
+       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
+       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" placeholder="${{data[item][count.value]['JUNP']}}"></th>
+       <th>${{data[item][count.value]['JUNB']}}</th>
+       <th>${{data[item][count.value]['Balance']}}</th>
+       <th><input type="submit" name ="sub">    </th>
+       </div>
+       </form>
+   </tr>
+          {% set count.value = count.value + 1 %}
+{% endfor %}
+{% endfor %}
+</table>
+</div>
+
+<div id = "JUL">
+    <table class="styled-table">
+      <thead>
+      <tr>
+    <th>NAME</th>
+    <th>July</th>
+    <th>Input Date</th>
+    <th>Notes</th>
+    <th>Service Charge</th>
+    <th>Month's Payment</th>
+    <th>Month's Balance</th>
+    <th>Total Balance</th>
+    <th>Edit Entry</th>
+  </tr>
+      </thead>
+    {% set count = namespace(value=0) %}
+        {% for i in range(iter)%}
+     {% for item in data %}
+
+   <tr>
+       <form method ='post'>
+           <div action = "{{url_for('Months')}}">
+                 <input id ="hide" type="text"  name="index" value="{{count.value}}">
+                 <input id ="hide" type="text"  name="mon" value="JUL">
+               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['JUL']}}</textarea></th>
+       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
+       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" placeholder="${{data[item][count.value]['JULP']}}"></th>
+       <th>${{data[item][count.value]['JULB']}}</th>
+       <th>${{data[item][count.value]['Balance']}}</th>
+       <th><input type="submit" name ="sub">    </th>
+       </div>
+       </form>
+   </tr>
+          {% set count.value = count.value + 1 %}
+{% endfor %}
+{% endfor %}
+</table>
+</div>
+
+<div id = "AUG">
+    <table class="styled-table">
+      <thead>
+      <tr>
+    <th>NAME</th>
+    <th>August</th>
+    <th>Input Date</th>
+    <th>Notes</th>
+    <th>Service Charge</th>
+    <th>Month's Payment</th>
+    <th>Month's Balance</th>
+    <th>Total Balance</th>
+    <th>Edit Entry</th>
+  </tr>
+      </thead>
+    {% set count = namespace(value=0) %}
+        {% for i in range(iter)%}
+     {% for item in data %}
+
+   <tr>
+       <form method ='post'>
+           <div action = "{{url_for('Months')}}">
+                 <input id ="hide" type="text"  name="index" value="{{count.value}}">
+                 <input id ="hide" type="text"  name="mon" value="AUG">
+               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['AUG']}}</textarea></th>
+       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
+       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" placeholder="${{data[item][count.value]['AUGP']}}"></th>
+       <th>${{data[item][count.value]['AUGB']}}</th>
+       <th>${{data[item][count.value]['Balance']}}</th>
+       <th><input type="submit" name ="sub">    </th>
+       </div>
+       </form>
+   </tr>
+          {% set count.value = count.value + 1 %}
+{% endfor %}
+{% endfor %}
+</table>
+</div>
+
+    <div id = "SEP">
+    <table class="styled-table">
+      <thead>
+      <tr>
+    <th>NAME</th>
+    <th>September</th>
+    <th>Input Date</th>
+    <th>Notes</th>
+    <th>Service Charge</th>
+    <th>Month's Payment</th>
+    <th>Month's Balance</th>
+    <th>Total Balance</th>
+    <th>Edit Entry</th>
+  </tr>
+      </thead>
+    {% set count = namespace(value=0) %}
+        {% for i in range(iter)%}
+     {% for item in data %}
+
+   <tr>
+       <form method ='post'>
+           <div action = "{{url_for('Months')}}">
+                 <input id ="hide" type="text"  name="index" value="{{count.value}}">
+                 <input id ="hide" type="text"  name="mon" value="SEP">
+               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['SEP']}}</textarea></th>
+       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
+       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" placeholder="${{data[item][count.value]['SEPP']}}"></th>
+       <th>${{data[item][count.value]['SEPB']}}</th>
+       <th>${{data[item][count.value]['Balance']}}</th>
+       <th><input type="submit" name ="sub">    </th>
+       </div>
+       </form>
+   </tr>
+          {% set count.value = count.value + 1 %}
+{% endfor %}
+{% endfor %}
+</table>
+    </div>
+
+    <div id = "OCT">
+    <table class="styled-table">
+      <thead>
+      <tr>
+    <th>NAME</th>
+    <th>October</th>
+    <th>Input Date</th>
+    <th>Notes</th>
+    <th>Service Charge</th>
+    <th>Month's Payment</th>
+    <th>Month's Balance</th>
+    <th>Total Balance</th>
+    <th>Edit Entry</th>
+  </tr>
+      </thead>
+    {% set count = namespace(value=0) %}
+        {% for i in range(iter)%}
+     {% for item in data %}
+
+   <tr>
+       <form method ='post'>
+           <div action = "{{url_for('Months')}}">
+                 <input id ="hide" type="text"  name="index" value="{{count.value}}">
+                 <input id ="hide" type="text"  name="mon" value="OCT">
+               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['OCT']}}</textarea></th>
+       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
+       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" placeholder="${{data[item][count.value]['OCTP']}}"></th>
+       <th>${{data[item][count.value]['OCTB']}}</th>
+       <th>${{data[item][count.value]['Balance']}}</th>
+       <th><input type="submit" name ="sub">    </th>
+       </div>
+       </form>
+   </tr>
+          {% set count.value = count.value + 1 %}
+{% endfor %}
+{% endfor %}
+</table>
+    </div>
+
+    <div id = "NOV">
+    <table class="styled-table">
+      <thead>
+      <tr>
+    <th>NAME</th>
+    <th>November</th>
+    <th>Input Date</th>
+    <th>Notes</th>
+    <th>Service Charge</th>
+    <th>Month's Payment</th>
+    <th>Month's Balance</th>
+    <th>Total Balance</th>
+    <th>Edit Entry</th>
+  </tr>
+      </thead>
+    {% set count = namespace(value=0) %}
+        {% for i in range(iter)%}
+     {% for item in data %}
+
+   <tr>
+       <form method ='post'>
+           <div action = "{{url_for('Months')}}">
+                 <input id ="hide" type="text"  name="index" value="{{count.value}}">
+                 <input id ="hide" type="text"  name="mon" value="NOV">
+               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['NOV']}}</textarea></th>
+       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
+       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" placeholder="${{data[item][count.value]['NOVP']}}"></th>
+       <th>${{data[item][count.value]['NOVB']}}</th>
+       <th>${{data[item][count.value]['Balance']}}</th>
+       <th><input type="submit" name ="sub">    </th>
+       </div>
+       </form>
+   </tr>
+          {% set count.value = count.value + 1 %}
+{% endfor %}
+{% endfor %}
+</table>
+    </div>
+
+    <div id = "DEC">
+    <table class="styled-table">
+      <thead>
+      <tr>
+    <th>NAME</th>
+    <th>December</th>
+    <th>Input Date</th>
+    <th>Notes</th>
+    <th>Service Charge</th>
+    <th>Month's Payment</th>
+    <th>Month's Balance</th>
+    <th>Total Balance</th>
+    <th>Edit Entry</th>
+  </tr>
+      </thead>
+    {% set count = namespace(value=0) %}
+        {% for i in range(iter)%}
+     {% for item in data %}
+
+   <tr>
+       <form method ='post'>
+           <div action = "{{url_for('Months')}}">
+                 <input id ="hide" type="text"  name="index" value="{{count.value}}">
+                 <input id ="hide" type="text"  name="mon" value="DEC">
+               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['DEC']}}</textarea></th>
+       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
+       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" placeholder="${{data[item][count.value]['DECP']}}"></th>
+       <th>${{data[item][count.value]['DECB']}}</th>
+       <th>${{data[item][count.value]['Balance']}}</th>
+       <th><input type="submit" name ="sub">    </th>
+       </div>
+       </form>
+   </tr>
+          {% set count.value = count.value + 1 %}
+{% endfor %}
+{% endfor %}
+</table>
+    </div>
+<body>
+
+</body>
+</html>

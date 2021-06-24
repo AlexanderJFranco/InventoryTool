@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+
+<script>
+
+    $(function() {
+
+
+   var people = [];
+
+   $.getJSON('db2021.json', function(data) {
+       $.each(data.customer, function(i, f) {
+          var tblRow = "<tr>" + "<td>" + f.NAME + "</td>" +</tr>"
+           $(tblRow).appendTo("#userdata tbody");
+     });
+
+   });
+
+});
+</script>
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>TEST</title>
+    <h1>Monthly Inventory</h1>
+</head>
+
+
+<table style="width:100%">
+  <tr>
+    <th>NAME</th>
+    <th>AMOUNT</th>
+    <th>JAN</th>
+      <th>FEB</th>
+      <th>MAR</th>
+      <th>APR</th>
+      <th>MAY</th>
+      <th>JUN</th>
+      <th>JUL</th>
+      <th>AUG</th>
+      <th>SEP</th>
+      <th>OCT</th>
+      <th>NOV</th>
+      <th>DEC</th>
+  </tr>
+  <tr>
+    <td>NULL</td>
+    <td>NULL</td>
+    <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+
+  </tr>
+  <tr>
+    <td>NULL</td>
+    <td>NULL</td>
+    <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+      <td>NULL</td>
+  </tr>
+</table>
+
+<body>
+
+</body>
+</html>

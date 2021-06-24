@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Remove Customer</title>
+</head>
+<div class="topnav">
+  <a  href="/">Service Overview</a>
+  <a href="/Monthly">Monthly Servicing</a>
+  <a href="/addCustomer">Add Customer</a>
+  <a class="active" href="/removeCustomer">Remove Customer</a>
+  <a href="/instructions">Instructions</a>
+</div>
+<body>
+<br>
+<header>Remove Customer</header><br>
+<form method ='post'>
+           <div action = "{{url_for('removeCustomer')}}">
+               <th><input name="name" > <input type="submit" name ="sub"></th>
+       </div>
+       </form>
+<p>To remove a customer simply enter their name in the following text field.</p>
+<p>This system is case sensitive so make sure the name is inputted exactly as it appears in the system.</p>
+<p>This software does not distinguish user with the same name so make sure there</p>
+<p>are no repeated names entered.</p>
+</body>
+</html>
