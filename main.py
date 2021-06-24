@@ -5,6 +5,7 @@ from pprint import pprint
 todays_date = date.today()
 
 app = Flask(__name__)
+app.est("port",PORT)
 f = open('./db2021.json',)
 data = json.load(f)
 iter = len(data['customer'])
