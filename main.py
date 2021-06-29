@@ -92,7 +92,8 @@ def Months():
     iter = len(data['customer'])
     f.close()
     def updatedb(month, index, date,list,name,charge,payment,notes,req):
-        print(data['customer'][int(index)][month+"P"])
+
+        data['customer'][int(index)]['req']=req
         if payment!="":
             data['customer'][int(index)][month +"P"]= float(payment)+float(data['customer'][int(index)][month +"P"])
 
