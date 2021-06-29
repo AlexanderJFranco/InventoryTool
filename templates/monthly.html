@@ -86,7 +86,7 @@ input[type="date"]:hover:after {
         border-top-style: hidden;
         border-right-style: hidden;
         border-left-style: hidden;
-        border-bottom-style: groove;
+        border-bottom-style: hidden;
         background-color: transparent;
       }
 
@@ -151,6 +151,10 @@ tr:nth-child(even) {
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript" src="{{url_for('static', filename='monthly.js')}}"></script>
+
+
+
+
 <head>
     <meta charset="UTF-8">
     <title>Monthly Overview</title>
@@ -179,13 +183,15 @@ tr:nth-child(even) {
 <button class="button button1" onclick="ShowNov()">November</button>
 <button class="button button1" onclick="ShowDec()">December</button>
 
-    <div id = "JAN">
-    <table class="styled-table">
+
+
+<div id = "JAN">
+        <table class="styled-table">
       <thead>
       <tr>
     <th>NAME</th>
     <th>January</th>
-    <th>Input Date</th>
+    <th>Required Servicing</th>
     <th>Notes</th>
     <th>Service Charge</th>
     <th>Month's Payment</th>
@@ -204,8 +210,8 @@ tr:nth-child(even) {
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="JAN">
                <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
-       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['JAN']}}</textarea></th>
-       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['JAN']}}</textarea><input type="date" name="time"></th>
+       <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
        <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
        <th><input name="payment" placeholder="${{data[item][count.value]['JANP']}}"></th>
@@ -227,7 +233,7 @@ tr:nth-child(even) {
       <tr>
     <th>NAME</th>
     <th>February</th>
-    <th>Input Date</th>
+    <th>Required Servicing</th>
     <th>Notes</th>
     <th>Service Charge</th>
     <th>Month's Payment</th>
@@ -246,8 +252,8 @@ tr:nth-child(even) {
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="FEB">
                <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
-       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['FEB']}}</textarea></th>
-       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['FEB']}}</textarea><input type="date" name="time"></th>
+       <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
        <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
        <th><input name="payment" placeholder="${{data[item][count.value]['FEBP']}}"></th>
@@ -269,7 +275,7 @@ tr:nth-child(even) {
       <tr>
     <th>NAME</th>
     <th>March</th>
-    <th>Input Date</th>
+    <th>Required Servicing</th>
     <th>Notes</th>
     <th>Service Charge</th>
     <th>Month's Payment</th>
@@ -288,8 +294,8 @@ tr:nth-child(even) {
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="MAR">
                <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
-       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['MAR']}}</textarea></th>
-       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['MAR']}}</textarea><input type="date" name="time"></th>
+       <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
        <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
        <th><input name="payment" placeholder="${{data[item][count.value]['MARP']}}"></th>
@@ -302,8 +308,7 @@ tr:nth-child(even) {
           {% set count.value = count.value + 1 %}
 {% endfor %}
 {% endfor %}
-</table>
-</div>
+</table></div>
 
 <div id = "APR">
     <table class="styled-table">
@@ -311,7 +316,7 @@ tr:nth-child(even) {
       <tr>
     <th>NAME</th>
     <th>April</th>
-    <th>Input Date</th>
+    <th>Required Servicing</th>
     <th>Notes</th>
     <th>Service Charge</th>
     <th>Month's Payment</th>
@@ -330,8 +335,8 @@ tr:nth-child(even) {
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="APR">
                <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
-       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['APR']}}</textarea></th>
-       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['APR']}}</textarea><input type="date" name="time"></th>
+       <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
        <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
        <th><input name="payment" placeholder="${{data[item][count.value]['APRP']}}"></th>
@@ -344,8 +349,7 @@ tr:nth-child(even) {
           {% set count.value = count.value + 1 %}
 {% endfor %}
 {% endfor %}
-</table>
-</div>
+</table></div>
 
 <div id = "MAY">
     <table class="styled-table">
@@ -353,7 +357,7 @@ tr:nth-child(even) {
       <tr>
     <th>NAME</th>
     <th>May</th>
-    <th>Input Date</th>
+    <th>Required Servicing</th>
     <th>Notes</th>
     <th>Service Charge</th>
     <th>Month's Payment</th>
@@ -372,8 +376,8 @@ tr:nth-child(even) {
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="MAY">
                <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
-       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['MAY']}}</textarea></th>
-       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['MAY']}}</textarea><input type="date" name="time"></th>
+       <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
        <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
        <th><input name="payment" placeholder="${{data[item][count.value]['MAYP']}}"></th>
@@ -386,8 +390,7 @@ tr:nth-child(even) {
           {% set count.value = count.value + 1 %}
 {% endfor %}
 {% endfor %}
-</table>
-</div>
+</table></div>
 
 <div id ="JUN">
     <table class="styled-table">
@@ -395,7 +398,7 @@ tr:nth-child(even) {
       <tr>
     <th>NAME</th>
     <th>June</th>
-    <th>Input Date</th>
+    <th>Required Servicing</th>
     <th>Notes</th>
     <th>Service Charge</th>
     <th>Month's Payment</th>
@@ -414,8 +417,8 @@ tr:nth-child(even) {
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="JUN">
                <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
-       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['JUN']}}</textarea></th>
-       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['JUN']}}</textarea><input type="date" name="time"></th>
+       <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
        <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
        <th><input name="payment" placeholder="${{data[item][count.value]['JUNP']}}"></th>
@@ -437,7 +440,7 @@ tr:nth-child(even) {
       <tr>
     <th>NAME</th>
     <th>July</th>
-    <th>Input Date</th>
+    <th>Required Servicing</th>
     <th>Notes</th>
     <th>Service Charge</th>
     <th>Month's Payment</th>
@@ -456,8 +459,8 @@ tr:nth-child(even) {
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="JUL">
                <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
-       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['JUL']}}</textarea></th>
-       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['JUL']}}</textarea><input type="date" name="time"></th>
+       <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
        <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
        <th><input name="payment" placeholder="${{data[item][count.value]['JULP']}}"></th>
@@ -470,8 +473,7 @@ tr:nth-child(even) {
           {% set count.value = count.value + 1 %}
 {% endfor %}
 {% endfor %}
-</table>
-</div>
+</table></div>
 
 <div id = "AUG">
     <table class="styled-table">
@@ -479,7 +481,7 @@ tr:nth-child(even) {
       <tr>
     <th>NAME</th>
     <th>August</th>
-    <th>Input Date</th>
+    <th>Required Servicing</th>
     <th>Notes</th>
     <th>Service Charge</th>
     <th>Month's Payment</th>
@@ -498,8 +500,8 @@ tr:nth-child(even) {
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="AUG">
                <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
-       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['AUG']}}</textarea></th>
-       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['AUG']}}</textarea><input type="date" name="time"></th>
+       <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
        <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
        <th><input name="payment" placeholder="${{data[item][count.value]['AUGP']}}"></th>
@@ -512,16 +514,15 @@ tr:nth-child(even) {
           {% set count.value = count.value + 1 %}
 {% endfor %}
 {% endfor %}
-</table>
-</div>
+</table></div>
 
-    <div id = "SEP">
+<div id = "SEP">
     <table class="styled-table">
       <thead>
       <tr>
     <th>NAME</th>
     <th>September</th>
-    <th>Input Date</th>
+    <th>Required Servicing</th>
     <th>Notes</th>
     <th>Service Charge</th>
     <th>Month's Payment</th>
@@ -540,8 +541,8 @@ tr:nth-child(even) {
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="SEP">
                <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
-       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['SEP']}}</textarea></th>
-       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['SEP']}}</textarea><input type="date" name="time"></th>
+       <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
        <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
        <th><input name="payment" placeholder="${{data[item][count.value]['SEPP']}}"></th>
@@ -554,16 +555,15 @@ tr:nth-child(even) {
           {% set count.value = count.value + 1 %}
 {% endfor %}
 {% endfor %}
-</table>
-    </div>
+</table>    </div>
 
-    <div id = "OCT">
+<div id = "OCT">
     <table class="styled-table">
       <thead>
       <tr>
     <th>NAME</th>
     <th>October</th>
-    <th>Input Date</th>
+    <th>Required Servicing</th>
     <th>Notes</th>
     <th>Service Charge</th>
     <th>Month's Payment</th>
@@ -582,8 +582,8 @@ tr:nth-child(even) {
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="OCT">
                <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
-       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['OCT']}}</textarea></th>
-       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['OCT']}}</textarea><input type="date" name="time"></th>
+       <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
        <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
        <th><input name="payment" placeholder="${{data[item][count.value]['OCTP']}}"></th>
@@ -596,16 +596,15 @@ tr:nth-child(even) {
           {% set count.value = count.value + 1 %}
 {% endfor %}
 {% endfor %}
-</table>
-    </div>
+</table>    </div>
 
-    <div id = "NOV">
+<div id = "NOV">
     <table class="styled-table">
       <thead>
       <tr>
     <th>NAME</th>
     <th>November</th>
-    <th>Input Date</th>
+    <th>Required Servicing</th>
     <th>Notes</th>
     <th>Service Charge</th>
     <th>Month's Payment</th>
@@ -624,8 +623,8 @@ tr:nth-child(even) {
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="NOV">
                <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
-       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['NOV']}}</textarea></th>
-       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['NOV']}}</textarea><input type="date" name="time"></th>
+       <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
        <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
        <th><input name="payment" placeholder="${{data[item][count.value]['NOVP']}}"></th>
@@ -638,16 +637,15 @@ tr:nth-child(even) {
           {% set count.value = count.value + 1 %}
 {% endfor %}
 {% endfor %}
-</table>
-    </div>
+</table>    </div>
 
-    <div id = "DEC">
+<div id = "DEC">
     <table class="styled-table">
       <thead>
       <tr>
     <th>NAME</th>
     <th>December</th>
-    <th>Input Date</th>
+    <th>Required Servicing</th>
     <th>Notes</th>
     <th>Service Charge</th>
     <th>Month's Payment</th>
@@ -666,8 +664,8 @@ tr:nth-child(even) {
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="DEC">
                <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
-       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['DEC']}}</textarea></th>
-       <th><input type="date" name="time"></th>
+       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['DEC']}}</textarea><input type="date" name="time"></th>
+       <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
        <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
        <th><input name="payment" placeholder="${{data[item][count.value]['DECP']}}"></th>
@@ -680,9 +678,49 @@ tr:nth-child(even) {
           {% set count.value = count.value + 1 %}
 {% endfor %}
 {% endfor %}
-</table>
-    </div>
+</table>    </div>
 <body>
 
 </body>
+
+<script>
+var d = new Date();
+var n = d.getMonth();
+if(n==0){
+ShowJan();
+}
+if(n==1){
+ShowFeb();
+}
+if(n==2){
+ShowMar();
+}
+if(n==3){
+ShowApr();
+}
+if(n==4){
+ShowMay();
+}
+if(n==5){
+ShowJun();
+}
+if(n==6){
+ShowJul();
+}
+if(n==7){
+ShowAug();
+}
+if(n==8){
+ShowSep();
+}
+if(n==9){
+ShowOct();
+}
+if(n==10){
+ShowNov();
+}
+if(n==11){
+ShowDec();
+}
+</script>
 </html>

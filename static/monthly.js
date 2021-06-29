@@ -1,6 +1,3 @@
-var monthly='JAN';
-
-
 function ShowFeb() {
     document.getElementById("JAN").style.display = "none";
     document.getElementById("MAR").style.display = "none";
@@ -17,7 +14,9 @@ function ShowFeb() {
     x.style.display = "block";
 
 }
-
+function Bang(){
+alert("BANG");
+}
 function ShowMar() {
     document.getElementById("FEB").style.display = "none";
     document.getElementById("JAN").style.display = "none";

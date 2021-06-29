@@ -49,7 +49,7 @@ def removeCustomer():
 @app.route('/addCustomer', methods=['POST','GET'])
 def addCustomer():
     def add(name):
-        test = {"name": name,"Notes":"", "Balance": "0", "Charge": "0", "JAN": "", "FEB": "", "MAR": "", "APR": "", "MAY": "", "JUN": "", "JUL": "", "AUG": "", "SEP": "", "OCT": "", "NOV": "", "DEC": "", "JANB": "0", "FEBB": "0", "MARB": "0", "APRB": "0", "MAYB": "0", "JUNB": "0", "JULB": "0", "AUGB": "0", "SEPB": "0", "OCTB": "0", "NOVB": "0", "DECB": "0", "JANP": "0", "FEBP": "0", "MARP": "0", "APRP": "0", "MAYP": "0", "JUNP": "0", "JULP": "0", "AUGP": "0", "SEPP": "0", "OCTP": "0", "NOVP": "0", "DECP": "0"}
+        test = {"name": name,"req":"", "Notes":"", "Balance": "0", "Charge": "0", "JAN": "", "FEB": "", "MAR": "", "APR": "", "MAY": "", "JUN": "", "JUL": "", "AUG": "", "SEP": "", "OCT": "", "NOV": "", "DEC": "", "JANB": "0", "FEBB": "0", "MARB": "0", "APRB": "0", "MAYB": "0", "JUNB": "0", "JULB": "0", "AUGB": "0", "SEPB": "0", "OCTB": "0", "NOVB": "0", "DECB": "0", "JANP": "0", "FEBP": "0", "MARP": "0", "APRP": "0", "MAYP": "0", "JUNP": "0", "JULP": "0", "AUGP": "0", "SEPP": "0", "OCTP": "0", "NOVP": "0", "DECP": "0"}
         with open("./db2021.json", "r+") as file:
             data = json.load(file)
             data['customer'].append(test)
@@ -69,11 +69,15 @@ def Months():
     data = json.load(f)
     iter = len(data['customer'])
     f.close()
-    def updatedb(month, index, date,list,name,charge,payment,noyes):
-        print(data['customer'][int(index)][month+"P"])
+    def updatedb(month, index, date,list,name,charge,payment,notes,req):
+        subscript = "-"
+        if subscript in date:
+            t = date.split('-')
+            date=t[1]+"/"+t[2]+"/"+t[0]
+
+        data['customer'][int(index)]['req'] = req
         if payment!="":
             data['customer'][int(index)][month +"P"]= float(payment)+float(data['customer'][int(index)][month +"P"])
-
         if charge =="":
             charge = data['customer'][int(index)]['Charge']
         if list !="":
@@ -84,6 +88,7 @@ def Months():
             data['customer'][int(index)][month] +=date
         elif date !="":
             data['customer'][int(index)][month] += ", " + date
+
 
         temp = data['customer'][int(index)][month].split(' ')
         if temp!='':
@@ -107,7 +112,8 @@ def Months():
         list = request.form.get('list')
         index = request.form.get('index')
         test = request.form.get('mon')
-        updatedb(test,index, date,list,name,charge,payment,notes)
+        req = request.form.get('req')
+        updatedb(test,index, date,list,name,charge,payment,notes,req)
 
 
 
