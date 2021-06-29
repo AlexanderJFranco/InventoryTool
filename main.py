@@ -18,7 +18,7 @@ f.close()
 g = Github(os.environ['GITHUB_TOKEN'])
 repo = g.get_user().get_repo("InventoryTool")
 file = repo.get_contents("/db2021.json")
-repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
+repo.update_file("db2021.json", "more tests "+date.today(), json.dumps(data), file.sha, branch="master")
 
 
 @app.route('/instructions')
@@ -55,7 +55,7 @@ def removeCustomer():
         g = Github(os.environ['GITHUB_TOKEN'])
         repo = g.get_user().get_repo("InventoryTool")
         file = repo.get_contents("/db2021.json")
-        repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
+        repo.update_file("db2021.json", "more tests "+date.today(), json.dumps(data), file.sha, branch="master")
 
     if request.method=='POST':
         name = request.form.get('name')
@@ -78,7 +78,7 @@ def addCustomer():
     g = Github(os.environ['GITHUB_TOKEN'])
     repo = g.get_user().get_repo("InventoryTool")
     file = repo.get_contents("/db2021.json")
-    repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
+    repo.update_file("db2021.json", "more tests "+date.today(), json.dumps(data), file.sha, branch="master")
 
     if request.method=='POST':
         name = request.form.get('name')
@@ -92,7 +92,8 @@ def Months():
     iter = len(data['customer'])
     f.close()
     def updatedb(month, index, date,list,name,charge,payment,notes,req):
-        print(data['customer'][int(index)][month+"P"])
+
+        data['customer'][int(index)]['req']=req
         if payment!="":
             data['customer'][int(index)][month +"P"]= float(payment)+float(data['customer'][int(index)][month +"P"])
 
@@ -124,7 +125,7 @@ def Months():
         g = Github(os.environ['GITHUB_TOKEN'])
         repo = g.get_user().get_repo("InventoryTool")
         file = repo.get_contents("/db2021.json")
-        repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
+        repo.update_file("db2021.json", "more tests "+date.today(), json.dumps(data), file.sha, branch="master")
 
     if request.method=='POST':
         notes = request.form.get('note')
