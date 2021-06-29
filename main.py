@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import json
+import os
 from datetime import date
 from github import Github
 from pprint import pprint
@@ -14,7 +15,7 @@ f.close()
 f = open('./db2021.json', 'w+')
 f.write(json.dumps(data))
 f.close()
-g = Github("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")
+g = Github(os.environ['GITHUB_TOKEN'])
 repo = g.get_user().get_repo("InventoryTool")
 file = repo.get_contents("/db2021.json")
 repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
@@ -45,7 +46,7 @@ def removeCustomer():
             file.truncate()
             json.dump(data, file)
             file.close()
-            g = Github("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")
+            g = Github(os.environ['GITHUB_TOKEN'])
             repo = g.get_user().get_repo("InventoryTool")
             file = repo.get_contents("/db2021.json")
             repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
@@ -66,7 +67,7 @@ def addCustomer():
             file.seek(0)
             json.dump(data, file)
             file.close()
-        g = Github("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")
+        g = Github(os.environ['GITHUB_TOKEN'])
         repo = g.get_user().get_repo("InventoryTool")
         file = repo.get_contents("/db2021.json")
         repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
@@ -112,7 +113,7 @@ def Months():
         f.write(json.dumps(data))
         f.close()
 
-        g = Github("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")
+        g = Github(os.environ['GITHUB_TOKEN'])
         repo = g.get_user().get_repo("InventoryTool")
         file = repo.get_contents("/db2021.json")
         repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
