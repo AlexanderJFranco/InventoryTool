@@ -14,10 +14,10 @@ f.close()
 f = open('./db2021.json', 'w+')
 f.write(json.dumps(data))
 f.close()
-g = Github("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")
+g = Github("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")
 repo = g.get_user().get_repo("InventoryTool")
 file = repo.get_contents("/db2021.json")
-repo.update_file("db2021.json", "more tests", str(data), file.sha, branch="master")
+repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
 
 
 @app.route('/instructions')
@@ -45,10 +45,10 @@ def removeCustomer():
             file.truncate()
             json.dump(data, file)
             file.close()
-            g = Github("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")
+            g = Github("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")
             repo = g.get_user().get_repo("InventoryTool")
             file = repo.get_contents("/db2021.json")
-            repo.update_file("db2021.json", "more tests", str(data), file.sha, branch="master")
+            repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
 
     if request.method=='POST':
         name = request.form.get('name')
@@ -66,10 +66,10 @@ def addCustomer():
             file.seek(0)
             json.dump(data, file)
             file.close()
-        g = Github("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")
+        g = Github("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")
         repo = g.get_user().get_repo("InventoryTool")
         file = repo.get_contents("/db2021.json")
-        repo.update_file("db2021.json", "more tests", str(data), file.sha, branch="master")
+        repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
 
     if request.method=='POST':
         name = request.form.get('name')
@@ -112,10 +112,10 @@ def Months():
         f.write(json.dumps(data))
         f.close()
 
-        g = Github("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")
+        g = Github("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")
         repo = g.get_user().get_repo("InventoryTool")
         file = repo.get_contents("/db2021.json")
-        repo.update_file("db2021.json", "more tests", str(data), file.sha, branch="master")
+        repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
 
     if request.method=='POST':
         notes = request.form.get('note')
