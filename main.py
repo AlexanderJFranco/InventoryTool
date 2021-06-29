@@ -18,7 +18,7 @@ f.close()
 g = Github(os.environ['GITHUB_TOKEN'])
 repo = g.get_user().get_repo("InventoryTool")
 file = repo.get_contents("/db2021.json")
-repo.update_file("db2021.json", "more tests "+date.today(), json.dumps(data), file.sha, branch="master")
+repo.update_file("db2021.json", "more tests ", json.dumps(data), file.sha, branch="master")
 
 
 @app.route('/instructions')
@@ -55,7 +55,7 @@ def removeCustomer():
         g = Github(os.environ['GITHUB_TOKEN'])
         repo = g.get_user().get_repo("InventoryTool")
         file = repo.get_contents("/db2021.json")
-        repo.update_file("db2021.json", "more tests "+date.today(), json.dumps(data), file.sha, branch="master")
+        repo.update_file("db2021.json", "more tests ", json.dumps(data), file.sha, branch="master")
 
     if request.method=='POST':
         name = request.form.get('name')
@@ -78,7 +78,7 @@ def addCustomer():
     g = Github(os.environ['GITHUB_TOKEN'])
     repo = g.get_user().get_repo("InventoryTool")
     file = repo.get_contents("/db2021.json")
-    repo.update_file("db2021.json", "more tests "+date.today(), json.dumps(data), file.sha, branch="master")
+    repo.update_file("db2021.json", "more tests ", json.dumps(data), file.sha, branch="master")
 
     if request.method=='POST':
         name = request.form.get('name')
@@ -125,7 +125,7 @@ def Months():
         g = Github(os.environ['GITHUB_TOKEN'])
         repo = g.get_user().get_repo("InventoryTool")
         file = repo.get_contents("/db2021.json")
-        repo.update_file("db2021.json", "more tests "+date.today(), json.dumps(data), file.sha, branch="master")
+        repo.update_file("db2021.json", "more tests ", json.dumps(data), file.sha, branch="master")
 
     if request.method=='POST':
         notes = request.form.get('note')
