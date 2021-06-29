@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import json
 from datetime import date
+from github import Github
 from pprint import pprint
 todays_date = date.today()
 
@@ -13,6 +14,11 @@ f.close()
 f = open('./db2021.json', 'w+')
 f.write(json.dumps(data))
 f.close()
+g = Github("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")
+repo = g.get_user().get_repo("InventoryTool")
+file = repo.get_contents("/db2021.json")
+repo.update_file("db2021.json", "more tests", str(data), file.sha, branch="master")
+
 
 @app.route('/instructions')
 def instructions():
@@ -39,6 +45,10 @@ def removeCustomer():
             file.truncate()
             json.dump(data, file)
             file.close()
+            g = Github("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")
+            repo = g.get_user().get_repo("InventoryTool")
+            file = repo.get_contents("/db2021.json")
+            repo.update_file("db2021.json", "more tests", str(data), file.sha, branch="master")
 
     if request.method=='POST':
         name = request.form.get('name')
@@ -56,7 +66,10 @@ def addCustomer():
             file.seek(0)
             json.dump(data, file)
             file.close()
-
+        g = Github("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")
+        repo = g.get_user().get_repo("InventoryTool")
+        file = repo.get_contents("/db2021.json")
+        repo.update_file("db2021.json", "more tests", str(data), file.sha, branch="master")
 
     if request.method=='POST':
         name = request.form.get('name')
@@ -70,14 +83,10 @@ def Months():
     iter = len(data['customer'])
     f.close()
     def updatedb(month, index, date,list,name,charge,payment,notes,req):
-        subscript = "-"
-        if subscript in date:
-            t = date.split('-')
-            date=t[1]+"/"+t[2]+"/"+t[0]
-
-        data['customer'][int(index)]['req'] = req
+        print(data['customer'][int(index)][month+"P"])
         if payment!="":
             data['customer'][int(index)][month +"P"]= float(payment)+float(data['customer'][int(index)][month +"P"])
+
         if charge =="":
             charge = data['customer'][int(index)]['Charge']
         if list !="":
@@ -88,7 +97,6 @@ def Months():
             data['customer'][int(index)][month] +=date
         elif date !="":
             data['customer'][int(index)][month] += ", " + date
-
 
         temp = data['customer'][int(index)][month].split(' ')
         if temp!='':
@@ -103,6 +111,12 @@ def Months():
         f = open('./db2021.json', "w+")
         f.write(json.dumps(data))
         f.close()
+
+        g = Github("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")
+        repo = g.get_user().get_repo("InventoryTool")
+        file = repo.get_contents("/db2021.json")
+        repo.update_file("db2021.json", "more tests", str(data), file.sha, branch="master")
+
     if request.method=='POST':
         notes = request.form.get('note')
         payment = request.form.get('payment')
