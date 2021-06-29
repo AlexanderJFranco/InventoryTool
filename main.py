@@ -15,10 +15,6 @@ f.close()
 f = open('./db2021.json', 'w+')
 f.write(json.dumps(data))
 f.close()
-g = Github(os.environ['GITHUB_TOKEN'])
-repo = g.get_user().get_repo("InventoryTool")
-file = repo.get_contents("/db2021.json")
-repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
 
 
 @app.route('/instructions')
