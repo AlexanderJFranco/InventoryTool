@@ -31,6 +31,12 @@ def home():
     data = json.load(f)
     iter = len(data['customer'])
     f.close()
+
+    g = Github(os.environ['GITHUB_TOKEN'])
+    repo = g.get_user().get_repo("InventoryTool")
+    file = repo.get_contents("/db2021.json")
+    repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
+
     return render_template ("index.html",data=data,iter=iter)
 
 @app.route('/removeCustomer', methods=['POST','GET'])
@@ -46,10 +52,15 @@ def removeCustomer():
             file.truncate()
             json.dump(data, file)
             file.close()
+        g = Github(os.environ['GITHUB_TOKEN'])
+        repo = g.get_user().get_repo("InventoryTool")
+        file = repo.get_contents("/db2021.json")
+        repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
 
     if request.method=='POST':
         name = request.form.get('name')
         remove(name)
+
     return render_template ("removeCustomer.html",data=data)
 
 
@@ -63,6 +74,11 @@ def addCustomer():
             file.seek(0)
             json.dump(data, file)
             file.close()
+
+    g = Github(os.environ['GITHUB_TOKEN'])
+    repo = g.get_user().get_repo("InventoryTool")
+    file = repo.get_contents("/db2021.json")
+    repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
 
     if request.method=='POST':
         name = request.form.get('name')
@@ -105,6 +121,10 @@ def Months():
         f.write(json.dumps(data))
         f.close()
 
+        g = Github(os.environ['GITHUB_TOKEN'])
+        repo = g.get_user().get_repo("InventoryTool")
+        file = repo.get_contents("/db2021.json")
+        repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
 
     if request.method=='POST':
         notes = request.form.get('note')
