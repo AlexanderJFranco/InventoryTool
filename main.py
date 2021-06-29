@@ -1,13 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for
 import json
 import os
+from boto.s3.connection import S3Connection
 from datetime import date
 from github import Github
 from pprint import pprint
 todays_date = date.today()
 
 app = Flask(__name__)
-
+s3 = S3Connection(os.environ['GITHUB_TOKEN'], os.environ['GITHUB_TOKEN'])
 f = open('./db2021.json',)
 data = json.load(f)
 iter = len(data['customer'])
@@ -15,7 +16,7 @@ f.close()
 f = open('./db2021.json', 'w+')
 f.write(json.dumps(data))
 f.close()
-g = Github(GITHUB_TOKEN)
+g = Github(s3)
 repo = g.get_user().get_repo("InventoryTool")
 file = repo.get_contents("/db2021.json")
 repo.update_file("db2021.json", "more tests", json.dumps(data), file.sha, branch="master")
