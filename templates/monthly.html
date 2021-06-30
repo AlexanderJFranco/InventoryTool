@@ -417,9 +417,9 @@ tr:nth-child(even) {
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="JUN">
                <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
-       <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['JUN']}}</textarea><input type="date" name="time"></th>
+       <th><textarea rows="4" cols="16" style= "height: 50px" name="list">{{data[item][count.value]['JUN']}}</textarea><input type="date" name="time"></th>
        <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
-       <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
+       <th><textarea rows="4" cols="16" maxlength="9" style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
        <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
        <th><input name="payment" placeholder="${{data[item][count.value]['JUNP']}}"></th>
        <th>${{data[item][count.value]['JUNB']}}</th>
