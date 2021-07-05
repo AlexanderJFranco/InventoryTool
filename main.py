@@ -240,6 +240,8 @@ def Months():
         index = request.form.get('index')
         test = request.form.get('mon')
         req = request.form.get('req')
+        t = date.split('-')
+        date=t[1]+'/'+t[2]+'/'+t[0]
         if(date!="" and list!=""):
 
             list = list +", "+date
@@ -249,8 +251,6 @@ def Months():
         elif(date==""and list==""):
             list=""
         updatedb(test,index, date,list,name,charge,payment,notes,req)
-
-
 
     return render_template ("monthly.html",data=data,iter=len(data['customer']),current=str(todays_date.month))
 
