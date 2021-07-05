@@ -1,11 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
-import json
-import os
-from boto.s3.connection import S3Connection
 from datetime import date
 from github import Github
 from pprint import pprint
-import pyautogui
+
 
 import mysql.connector
 from mysql.connector.constants import ClientFlag
