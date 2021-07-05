@@ -154,7 +154,6 @@ tr:nth-child(even) {
 
 
 
-
 <head>
     <meta charset="UTF-8">
     <title>Monthly Overview</title>
@@ -209,12 +208,12 @@ tr:nth-child(even) {
            <div action = "{{url_for('Months')}}">
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="JAN">
-               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+               <th> <input name="name" value="{{data[item][count.value]['Name']}}"></th>
        <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['JAN']}}</textarea><input type="date" name="time"></th>
        <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
-       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
-       <th><input name="payment" placeholder="${{data[item][count.value]['JANP']}}"></th>
+       <th><input name="charge" value="{{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" value="{{data[item][count.value]['JANP']}}"></th>
        <th>${{data[item][count.value]['JANB']}}</th>
        <th>${{data[item][count.value]['Balance']}}</th>
        <th><input type="submit" name ="sub">    </th>
@@ -251,12 +250,12 @@ tr:nth-child(even) {
            <div action = "{{url_for('Months')}}">
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="FEB">
-               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+               <th> <input name="name" value="{{data[item][count.value]['Name']}}"></th>
        <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['FEB']}}</textarea><input type="date" name="time"></th>
        <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
-       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
-       <th><input name="payment" placeholder="${{data[item][count.value]['FEBP']}}"></th>
+       <th><input name="charge" value="{{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" value="{{data[item][count.value]['FEBP']}}"></th>
        <th>${{data[item][count.value]['FEBB']}}</th>
        <th>${{data[item][count.value]['Balance']}}</th>
        <th><input type="submit" name ="sub">    </th>
@@ -293,12 +292,12 @@ tr:nth-child(even) {
            <div action = "{{url_for('Months')}}">
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="MAR">
-               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+               <th> <input name="name" value="{{data[item][count.value]['Name']}}"></th>
        <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['MAR']}}</textarea><input type="date" name="time"></th>
        <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
-       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
-       <th><input name="payment" placeholder="${{data[item][count.value]['MARP']}}"></th>
+       <th><input name="charge" value="{{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" value="{{data[item][count.value]['MARP']}}"></th>
        <th>${{data[item][count.value]['MARB']}}</th>
        <th>${{data[item][count.value]['Balance']}}</th>
        <th><input type="submit" name ="sub">    </th>
@@ -334,12 +333,12 @@ tr:nth-child(even) {
            <div action = "{{url_for('Months')}}">
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="APR">
-               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+               <th> <input name="name" value="{{data[item][count.value]['Name']}}"></th>
        <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['APR']}}</textarea><input type="date" name="time"></th>
        <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
-       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
-       <th><input name="payment" placeholder="${{data[item][count.value]['APRP']}}"></th>
+       <th><input name="charge" value="{{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" value="{{data[item][count.value]['APRP']}}"></th>
        <th>${{data[item][count.value]['APRB']}}</th>
        <th>${{data[item][count.value]['Balance']}}</th>
        <th><input type="submit" name ="sub">    </th>
@@ -375,12 +374,12 @@ tr:nth-child(even) {
            <div action = "{{url_for('Months')}}">
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="MAY">
-               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+               <th> <input name="name" value="{{data[item][count.value]['Name']}}"></th>
        <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['MAY']}}</textarea><input type="date" name="time"></th>
        <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
-       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
-       <th><input name="payment" placeholder="${{data[item][count.value]['MAYP']}}"></th>
+       <th><input name="charge" value="{{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" value="{{data[item][count.value]['MAYP']}}"></th>
        <th>${{data[item][count.value]['MAYB']}}</th>
        <th>${{data[item][count.value]['Balance']}}</th>
        <th><input type="submit" name ="sub">    </th>
@@ -416,12 +415,12 @@ tr:nth-child(even) {
            <div action = "{{url_for('Months')}}">
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="JUN">
-               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+               <th> <input name="name" value="{{data[item][count.value]['Name']}}"></th>
        <th><textarea width="100%" style= "height: 50px" name="list">{{data[item][count.value]['JUN']}}</textarea><input type="date" name="time"></th>
        <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea width="100%" maxlength="9" style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
-       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
-       <th><input name="payment" placeholder="${{data[item][count.value]['JUNP']}}"></th>
+       <th><input name="charge" value="{{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" value="{{data[item][count.value]['JUNP']}}"></th>
        <th>${{data[item][count.value]['JUNB']}}</th>
        <th>${{data[item][count.value]['Balance']}}</th>
        <th><input type="submit" name ="sub">    </th>
@@ -454,16 +453,16 @@ tr:nth-child(even) {
      {% for item in data %}
 
    <tr>
-       <form method ='post'>
+       <form method ='post' onSubmit="window.location.reload()">
            <div action = "{{url_for('Months')}}">
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="JUL">
-               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+               <th> <input name="name" value="{{data[item][count.value]['Name']}}"></th>
        <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['JUL']}}</textarea><input type="date" name="time"></th>
        <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
-       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
-       <th><input name="payment" placeholder="${{data[item][count.value]['JULP']}}"></th>
+       <th><input name="charge" value="{{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" value="{{data[item][count.value]['JULP']}}"></th>
        <th>${{data[item][count.value]['JULB']}}</th>
        <th>${{data[item][count.value]['Balance']}}</th>
        <th><input type="submit" name ="sub">    </th>
@@ -499,12 +498,12 @@ tr:nth-child(even) {
            <div action = "{{url_for('Months')}}">
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="AUG">
-               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+               <th> <input name="name" value="{{data[item][count.value]['Name']}}"></th>
        <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['AUG']}}</textarea><input type="date" name="time"></th>
        <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
-       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
-       <th><input name="payment" placeholder="${{data[item][count.value]['AUGP']}}"></th>
+       <th><input name="charge" value="{{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" value="{{data[item][count.value]['AUGP']}}"></th>
        <th>${{data[item][count.value]['AUGB']}}</th>
        <th>${{data[item][count.value]['Balance']}}</th>
        <th><input type="submit" name ="sub">    </th>
@@ -540,12 +539,12 @@ tr:nth-child(even) {
            <div action = "{{url_for('Months')}}">
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="SEP">
-               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+               <th> <input name="name" value="{{data[item][count.value]['Name']}}"></th>
        <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['SEP']}}</textarea><input type="date" name="time"></th>
        <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
-       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
-       <th><input name="payment" placeholder="${{data[item][count.value]['SEPP']}}"></th>
+       <th><input name="charge" value="{{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" value="{{data[item][count.value]['SEPP']}}"></th>
        <th>${{data[item][count.value]['SEPB']}}</th>
        <th>${{data[item][count.value]['Balance']}}</th>
        <th><input type="submit" name ="sub">    </th>
@@ -581,12 +580,12 @@ tr:nth-child(even) {
            <div action = "{{url_for('Months')}}">
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="OCT">
-               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+               <th> <input name="name" value="{{data[item][count.value]['Name']}}"></th>
        <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['OCT']}}</textarea><input type="date" name="time"></th>
        <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
-       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
-       <th><input name="payment" placeholder="${{data[item][count.value]['OCTP']}}"></th>
+       <th><input name="charge" value="{{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" value="{{data[item][count.value]['OCTP']}}"></th>
        <th>${{data[item][count.value]['OCTB']}}</th>
        <th>${{data[item][count.value]['Balance']}}</th>
        <th><input type="submit" name ="sub">    </th>
@@ -622,12 +621,12 @@ tr:nth-child(even) {
            <div action = "{{url_for('Months')}}">
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="NOV">
-               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+               <th> <input name="name" value="{{data[item][count.value]['Name']}}"></th>
        <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['NOV']}}</textarea><input type="date" name="time"></th>
        <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
-       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
-       <th><input name="payment" placeholder="${{data[item][count.value]['NOVP']}}"></th>
+       <th><input name="charge" value="{{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" value="{{data[item][count.value]['NOVP']}}"></th>
        <th>${{data[item][count.value]['NOVB']}}</th>
        <th>${{data[item][count.value]['Balance']}}</th>
        <th><input type="submit" name ="sub">    </th>
@@ -663,12 +662,12 @@ tr:nth-child(even) {
            <div action = "{{url_for('Months')}}">
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="DEC">
-               <th> <input name="name" value="{{data[item][count.value]['name']}}"></th>
+               <th> <input name="name" value="{{data[item][count.value]['Name']}}"></th>
        <th><textarea style= "height: 50px" name="list">{{data[item][count.value]['DEC']}}</textarea><input type="date" name="time"></th>
        <th><input name="req" value="{{data[item][count.value]['req']}}"></th>
        <th><textarea style= "height: 50px" name="note">{{data[item][count.value]['Notes']}}</textarea></th>
-       <th><input name="charge" placeholder="${{data[item][count.value]['Charge']}}"></th>
-       <th><input name="payment" placeholder="${{data[item][count.value]['DECP']}}"></th>
+       <th><input name="charge" value="{{data[item][count.value]['Charge']}}"></th>
+       <th><input name="payment" value="{{data[item][count.value]['DECP']}}"></th>
        <th>${{data[item][count.value]['DECB']}}</th>
        <th>${{data[item][count.value]['Balance']}}</th>
        <th><input type="submit" name ="sub">    </th>
