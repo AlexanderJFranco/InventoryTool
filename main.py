@@ -240,8 +240,11 @@ def Months():
         index = request.form.get('index')
         test = request.form.get('mon')
         req = request.form.get('req')
-        t = date.split('-')
-        date=t[1]+'/'+t[2]+'/'+t[0]
+        if('-' in date ):
+
+            t = date.split('-')
+            date=t[1]+'/'+t[2]+'/'+t[0]
+
         if(date!="" and list!=""):
 
             list = list +", "+date
