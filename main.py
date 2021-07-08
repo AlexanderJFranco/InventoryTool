@@ -93,7 +93,7 @@ def Months():
 
     config['database'] = 'tDB'  # add new database to config dict
     cnxn = mysql.connector.connect(**config)
-    cursor = cnxn.cursor(dictionary=True)
+    cursor = cnxn.cursor(dictionary=True,buffered=True)
     cursor.execute("SELECT * FROM Customers")
     li = []
     for row in cursor:
@@ -105,19 +105,27 @@ def Months():
             cursor.execute("UPDATE Customers SET req=%s, JUL=%s , JULP = %s , Charge= %s, Notes=%s  WHERE Name=%s",(req,list,payment,charge,notes,name))
             cnxn.commit()
             mbalance = len(list.split(','))
-            if(mbalance ==0):
-                mbalance=1
-            mbalance = mbalance*int(charge)
+            if (mbalance == 1):
+                mbalance = 0
+            mbalance = mbalance*float(charge)-float(payment)
+            mbalance=round(mbalance,2)
+            if(list==""):
+                mbalance=0
             cursor.execute("UPDATE Customers SET JULB=%s WHERE Name=%s",
                            (mbalance, name))
             cnxn.commit()
         if(month=='JAN'):
+            cursor.execute("SELECT JANP FROM Customers WHERE Name=%s", (name,))
+            t = float(payment) + float(cursor.fetchone()['JANP'])
             cursor.execute("UPDATE Customers SET req=%s, JAN=%s , JANP = %s , Charge= %s, Notes=%s  WHERE Name=%s",(req,list,payment,charge,notes,name))
             cnxn.commit()
             mbalance = len(list.split(','))
             if(mbalance ==0):
                 mbalance=1
-            mbalance = mbalance*int(charge)
+            mbalance = mbalance*float(charge)-float(payment)
+            mbalance = round(mbalance, 2)
+            if (list == ""):
+                mbalance = 0
             cursor.execute("UPDATE Customers SET JANB=%s WHERE Name=%s",
                            (mbalance, name))
             cnxn.commit()
@@ -127,7 +135,10 @@ def Months():
             mbalance = len(list.split(','))
             if(mbalance ==0):
                 mbalance=1
-            mbalance = mbalance*int(charge)
+            mbalance = mbalance*float(charge)-float(payment)
+            mbalance = round(mbalance, 2)
+            if (list == ""):
+                mbalance = 0
             cursor.execute("UPDATE Customers SET FEBB=%s WHERE Name=%s",
                            (mbalance, name))
             cnxn.commit()
@@ -137,7 +148,10 @@ def Months():
             mbalance = len(list.split(','))
             if(mbalance ==0):
                 mbalance=1
-            mbalance = mbalance*int(charge)
+            mbalance = mbalance*float(charge)-float(payment)
+            mbalance = round(mbalance, 2)
+            if (list == ""):
+                mbalance = 0
             cursor.execute("UPDATE Customers SET MARB=%s WHERE Name=%s",
                            (mbalance, name))
             cnxn.commit()
@@ -147,7 +161,10 @@ def Months():
             mbalance = len(list.split(','))
             if(mbalance ==0):
                 mbalance=1
-            mbalance = mbalance*int(charge)
+            mbalance = mbalance*float(charge)-float(payment)
+            mbalance = round(mbalance, 2)
+            if (list == ""):
+                mbalance = 0
             cursor.execute("UPDATE Customers SET APRB=%s WHERE Name=%s",
                            (mbalance, name))
             cnxn.commit()
@@ -157,7 +174,10 @@ def Months():
             mbalance = len(list.split(','))
             if(mbalance ==0):
                 mbalance=1
-            mbalance = mbalance*int(charge)
+            mbalance = mbalance*float(charge)-float(payment)
+            mbalance = round(mbalance, 2)
+            if (list == ""):
+                mbalance = 0
             cursor.execute("UPDATE Customers SET MAYB=%s WHERE Name=%s",
                            (mbalance, name))
             cnxn.commit()
@@ -167,7 +187,10 @@ def Months():
             mbalance = len(list.split(','))
             if(mbalance ==0):
                 mbalance=1
-            mbalance = mbalance*int(charge)
+            mbalance = mbalance*float(charge)-float(payment)
+            mbalance = round(mbalance, 2)
+            if (list == ""):
+                mbalance = 0
             cursor.execute("UPDATE Customers SET JUNB=%s WHERE Name=%s",
                            (mbalance, name))
             cnxn.commit()
@@ -177,7 +200,10 @@ def Months():
             mbalance = len(list.split(','))
             if(mbalance ==0):
                 mbalance=1
-            mbalance = mbalance*int(charge)
+            mbalance = mbalance*float(charge)-float(payment)
+            mbalance = round(mbalance, 2)
+            if (list == ""):
+                mbalance = 0
             cursor.execute("UPDATE Customers SET AUGB=%s WHERE Name=%s",
                            (mbalance, name))
             cnxn.commit()
@@ -187,7 +213,10 @@ def Months():
             mbalance = len(list.split(','))
             if(mbalance ==0):
                 mbalance=1
-            mbalance = mbalance*int(charge)
+            mbalance = mbalance*float(charge)-float(payment)
+            mbalance = round(mbalance, 2)
+            if (list == ""):
+                mbalance = 0
             cursor.execute("UPDATE Customers SET NOVB=%s WHERE Name=%s",
                            (mbalance, name))
             cnxn.commit()
@@ -195,9 +224,13 @@ def Months():
             cursor.execute("UPDATE Customers SET req=%s, SEP=%s , SEPP = %s , Charge= %s, Notes=%s  WHERE Name=%s",(req,list,payment,charge,notes,name))
             cnxn.commit()
             mbalance = len(list.split(','))
+
             if(mbalance ==0):
                 mbalance=1
-            mbalance = mbalance*int(charge)
+            mbalance = mbalance*float(charge)-float(payment)
+            mbalance = round(mbalance, 2)
+            if (list == ""):
+                mbalance = 0
             cursor.execute("UPDATE Customers SET SEPB=%s WHERE Name=%s",
                            (mbalance, name))
             cnxn.commit()
@@ -207,25 +240,30 @@ def Months():
             mbalance = len(list.split(','))
             if(mbalance ==0):
                 mbalance=1
-            mbalance = mbalance*int(charge)
+            mbalance = mbalance*float(charge)-float(payment)
+            mbalance = round(mbalance, 2)
+            if (list == ""):
+                mbalance = 0
             cursor.execute("UPDATE Customers SET OCTB=%s WHERE Name=%s",
                            (mbalance, name))
             cnxn.commit()
-        if(month=='DEC'):
-            cursor.execute("UPDATE Customers SET req=%s, DEC=%s , DECP = %s , Charge= %s, Notes=%s  WHERE Name=%s",(req,list,payment,charge,notes,name))
+        if(month=='DECC'):
+            cursor.execute("UPDATE Customers SET req=%s, DECC=%s , DECP = %s , Charge= %s, Notes=%s  WHERE Name=%s",(req,list,payment,charge,notes,name))
             cnxn.commit()
             mbalance = len(list.split(','))
             if(mbalance ==0):
                 mbalance=1
-            mbalance = mbalance*int(charge)
+            mbalance = mbalance*float(charge)-float(payment)
+            mbalance = round(mbalance, 2)
+            if (list == ""):
+                mbalance = 0
             cursor.execute("UPDATE Customers SET DECB=%s WHERE Name=%s",
                            (mbalance, name))
             cnxn.commit()
         cursor.execute("SELECT JANB,FEBB,MARB,APRB,MAYB,JUNB,JULB,AUGB,SEPB,OCTB,NOVB,DECB FROM Customers WHERE Name =%s ",(name,))
         total=0
         for row in cursor:
-            print(row)
-            total = int(row['JANB'])+int(row['FEBB'])+int(row['MARB'])+int(row['APRB'])+int(row['MAYB'])+int(row['JUNB'])+int(row['JULB'])+int(row['AUGB'])+int(row['SEPB'])+int(row['OCTB'])+int(row['NOVB'])+int(row['DECB'])
+            total = float(row['JANB'])+float(row['FEBB'])+float(row['MARB'])+float(row['APRB'])+float(row['MAYB'])+float(row['JUNB'])+float(row['JULB'])+float(row['AUGB'])+float(row['SEPB'])+float(row['OCTB'])+float(row['NOVB'])+float(row['DECB'])
         cursor.execute("UPDATE Customers SET Balance=%s WHERE Name=%s",
                         (total, name))
         cnxn.commit()
@@ -243,7 +281,7 @@ def Months():
         if('-' in date ):
 
             t = date.split('-')
-            date=t[1]+'/'+t[2]+'/'+t[0]
+            date=t[1]+'/'+t[2]
 
         if(date!="" and list!=""):
 

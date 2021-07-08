@@ -14,11 +14,6 @@ config = {
 config['database'] = 'tDB'  # add new database to config dict
 cnxn = mysql.connector.connect(**config)
 cursor = cnxn.cursor(dictionary=True)
-cursor.execute("SELECT * FROM Customers")
-li=[]
-i=0
-for row in cursor:
-    data.append(row)
-    print(row)
-cnxn.commit()
-print(data)
+name='Aeyal'
+cursor.execute("SELECT JULP FROM Customers WHERE Name=%s",(name,))
+print(cursor.fetchone()['JULP'])
