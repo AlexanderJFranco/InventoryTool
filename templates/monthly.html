@@ -148,11 +148,25 @@ tr:nth-child(even) {
  color: black;
 }
 
+textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    -webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
+    -moz-box-sizing: border-box; /* FF1+ */
+    box-sizing: border-box; /* Chrome, IE8, Opera, Safari 5.1*/
+}
+
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript" src="{{url_for('static', filename='monthly.js')}}"></script>
 
-
+<script>
+     function myFunction() {
+     alert('HIT');
+     location.replace("https://www.w3schools.com");
+     }
+   </script>
 
 <head>
     <meta charset="UTF-8">
@@ -205,7 +219,7 @@ tr:nth-child(even) {
 
    <tr>
        <form method ='post'>
-           <div action = "{{url_for('Months')}}">
+           <div >
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="JAN">
                <th> <input name="name" value="{{data[item][count.value]['Name']}}"></th>
@@ -453,7 +467,7 @@ tr:nth-child(even) {
      {% for item in data %}
 
    <tr>
-       <form method ='post' onSubmit="window.location.reload()">
+       <form method ='post' >
            <div action = "{{url_for('Months')}}">
                  <input id ="hide" type="text"  name="index" value="{{count.value}}">
                  <input id ="hide" type="text"  name="mon" value="JUL">
@@ -465,7 +479,7 @@ tr:nth-child(even) {
        <th><input name="payment" value="{{data[item][count.value]['JULP']}}"></th>
        <th>${{data[item][count.value]['JULB']}}</th>
        <th>${{data[item][count.value]['Balance']}}</th>
-       <th><input type="submit" name ="sub">    </th>
+       <th><input type="submit" name ="sub" onClick="myFunction()">    </th>
        </div>
        </form>
    </tr>

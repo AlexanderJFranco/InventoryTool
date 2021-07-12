@@ -34,8 +34,8 @@ for row in cursor:
     li.append(row)
 data = {'customer': li}
 
-
-
+if(data['customer'][0]['JUN']==''):
+    print('Here')
 
 def reload():
     config['database'] = 'tDB'  # add new database to config dict
@@ -48,8 +48,21 @@ def reload():
 def instructions():
     return render_template ("instructions.html")
 
+@app.route('/redirect', methods=['GET', 'POST'])
+def Redirect():
+    return render_template ("redirect.html")
+
+
 @app.route('/')
 def home():
+    cnxn = mysql.connector.connect(**config)
+    cursor = cnxn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM Customers")
+    li = []
+    i = 0
+    for row in cursor:
+        li.append(row)
+    data = {'customer': li}
 
     return render_template ("index.html",data=data,iter=len(data['customer']))
 
@@ -90,7 +103,17 @@ def addCustomer():
 
 @app.route('/Monthly', methods=['POST','GET','ROUTE'])
 def Months():
-
+    def getData():
+        config['database'] = 'tDB'  # add new database to config dict
+        cnxn = mysql.connector.connect(**config)
+        cursor = cnxn.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM Customers")
+        li = []
+        i = 0
+        for row in cursor:
+            li.append(row)
+        data = {'customer': li}
+        return data
     config['database'] = 'tDB'  # add new database to config dict
     cnxn = mysql.connector.connect(**config)
     cursor = cnxn.cursor(dictionary=True,buffered=True)
@@ -99,7 +122,6 @@ def Months():
     for row in cursor:
         li.append(row)
     data = {'customer': li}
-    reload()
     def updatedb(month, index, date,list,name,charge,payment,notes,req):
         if(month=='JUL'):
             cursor.execute("UPDATE Customers SET req=%s, JUL=%s , JULP = %s , Charge= %s, Notes=%s  WHERE Name=%s",(req,list,payment,charge,notes,name))
@@ -254,6 +276,12 @@ def Months():
                         (total, name))
         cnxn.commit()
 
+        cursor.execute("SELECT * FROM Customers")
+        li = []
+        for row in cursor:
+            li.append(row)
+        data = {'customer': li}
+
     if request.method=='POST':
         notes = request.form.get('note')
         payment = request.form.get('payment')
@@ -279,7 +307,7 @@ def Months():
             list=""
         updatedb(test,index, date,list,name,charge,payment,notes,req)
 
-    return render_template ("monthly.html",data=data,iter=len(data['customer']),current=str(todays_date.month))
+    return render_template ("monthly.html",data=getData(),iter=len(data['customer']),current=str(todays_date.month))
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug = True, host = "0.0.0.0")
