@@ -161,12 +161,7 @@ textarea {
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript" src="{{url_for('static', filename='monthly.js')}}"></script>
 
-<script>
-     function myFunction() {
-     alert('HIT');
-     location.replace("https://www.w3schools.com");
-     }
-   </script>
+
 
 <head>
     <meta charset="UTF-8">
@@ -479,7 +474,7 @@ textarea {
        <th><input name="payment" value="{{data[item][count.value]['JULP']}}"></th>
        <th>${{data[item][count.value]['JULB']}}</th>
        <th>${{data[item][count.value]['Balance']}}</th>
-       <th><input type="submit" name ="sub" onClick="myFunction()">    </th>
+       <th><input type="submit" name ="sub">    </th>
        </div>
        </form>
    </tr>
