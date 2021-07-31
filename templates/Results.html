@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-
 .topnav {
   background-color: #333;
   overflow: hidden;
@@ -81,6 +80,10 @@ input[type="date"]:after {
 input[type="date"]:hover:after {
     color: #2f6ed4;
 }
+      input[type="Search"] {
+        height: 100%;
+        background-color: transparent;
+      }
 
       input[type="row"] {
         width: 100%;
@@ -165,8 +168,6 @@ body{
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script type="text/javascript" src="{{url_for('static', filename='monthly.js')}}"></script>
 
-
-
 <head>
     <meta charset="UTF-8">
     <title>Monthly Overview</title>
@@ -174,14 +175,18 @@ body{
 
 <div class="topnav">
   <a  href="/">Service Overview</a>
-  <a class="active" href="/Monthly">Monthly Servicing</a>
-  <a href="/Search">Search Customer</a>
+  <a href="/Monthly">Monthly Servicing</a>
+  <a class="active" href="/Search">Search Customer</a>
   <a href="/addCustomer">Add Customer</a>
   <a href="/removeCustomer">Remove Customer</a>
   <a href="/instructions">Instructions</a>
 </div>
 
-
+<form method ="post">
+    <h1>Enter Customer Name To Be Searched</h1>
+    <input type="Search" name ="target">
+    <input type="submit" name="btn">
+</form>
 <br><br>
 
 <button class="button button1" onclick="ShowJan()">January</button>

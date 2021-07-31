@@ -19,31 +19,33 @@
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  background-color: #ddd;
+  background-color: #2f6ed4;
   color: black;
 }
 
 /* Add a color to the active/current link */
 .topnav a.active {
-  background-color: #04AA6D;
+  background-color: #2f6ed4;
   color: white;
 }
 
 
-.styled-table {
+.styled-table  {
+table-layout:fixed;
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
-    min-width: 400px;
+    width:100%;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    word-wrap: break-word;
 }
 input[type="date"] {
     position: relative;
 }
 
 .styled-table thead tr {
-    background-color: #009879;
+    background-color: #000000;
     color: #ffffff;
     text-align: left;
 }
@@ -126,6 +128,7 @@ tr:nth-child(even) {
 <div class="topnav">
   <a class="active" href="/">Service Overview</a>
   <a  href="/Monthly">Monthly Servicing</a>
+  <a href="/Search">Search Customer</a>
   <a href="/addCustomer">Add Customer</a>
   <a href="/removeCustomer">Remove Customer</a>
   <a href="/instructions">Instructions</a>

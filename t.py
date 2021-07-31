@@ -14,6 +14,10 @@ config = {
 config['database'] = 'tDB'  # add new database to config dict
 cnxn = mysql.connector.connect(**config)
 cursor = cnxn.cursor(dictionary=True)
-name='Aeyal'
-cursor.execute("SELECT JULP FROM Customers WHERE Name=%s",(name,))
-print(cursor.fetchone()['JULP'])
+name='AA'
+#cursor.execute("ALTER TABLE Customers DROP JULT ")
+cursor.execute("ALTER TABLE Customers ADD DECT VARCHAR(50) DEFAULT '0'")
+#cursor.execute("UPDATE Customers SET JULT = '0' WHERE  Name='AA';")
+#cursor.execute("SELECT * FROM Customers ORDER BY Name ASC")
+cnxn.commit()
+print(cursor.fetchall())

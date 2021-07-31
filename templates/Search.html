@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #2f6ed4;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #2f6ed4;
+  color: white;
+}
+
+
+.styled-table  {
+table-layout:fixed;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width:100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    word-wrap: break-word;
+}
+input[type="date"] {
+    position: relative;
+}
+
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #2f6ed4; /* Green */
+  color: white;
+}
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #2f6ed4;
+}
+.button1:hover {
+  background-color: #2f6ed4;
+  color: white;
+}
+
+
+.styled-table thead tr {
+    background-color: #000000;
+    color: #ffffff;
+    text-align: left;
+}
+
+/* create a new arrow, because we are going to mess up the native one
+see "List of symbols" below if you want another, you could also try to add a font-awesome icon.. */
+input[type="date"]:after {
+    content: "\25BC";
+    color: #555;
+    padding: 0 5px;
+}
+
+/* change color of symbol on hover */
+input[type="date"]:hover:after {
+    color: #2f6ed4;
+}
+      input[type="Search"] {
+        height: 100%;
+        background-color: transparent;
+      }
+
+      input[type="row"] {
+        width: 100%;
+        height: 100%;
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+        border-bottom-style: hidden;
+        background-color: transparent;
+      }
+
+/* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+}
+
+/* adjust increase/decrease button */
+input[type="date"]::-webkit-inner-spin-button {
+    z-index: 1;
+}
+
+ /* adjust clear button */
+ input[type="date"]::-webkit-clear-button {
+     z-index: 1;
+ }
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+#JAN, #FEB, #MAR, #APR , #MAY, #JUN, #JUL, #AUG, #SEP, #OCT, #NOV, #DEC, #hide{
+  display: none;
+}
+#JUN{
+  display: none;
+}
+
+::placeholder {
+  color: black;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color: black;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+ color: black;
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    -webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
+    -moz-box-sizing: border-box; /* FF1+ */
+    box-sizing: border-box; /* Chrome, IE8, Opera, Safari 5.1*/
+}
+body{
+}
+
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<div class="topnav">
+  <a  href="/">Service Overview</a>
+  <a  href="/Monthly">Monthly Servicing</a>
+  <a class="active" href="/Search">Search Customer</a>
+  <a  href="/addCustomer">Add Customer</a>
+  <a href="/removeCustomer">Remove Customer</a>
+  <a href="/instructions">Instructions</a>
+</div>
+<body>
+<form method ="post">
+    <h1>Enter Customer Name To Be Searched</h1>
+    <input type="text" name ="target">
+    <input type="submit" name="btn" >
+</form>
+</body>
+</html>
