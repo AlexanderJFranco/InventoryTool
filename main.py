@@ -27,8 +27,7 @@ app = Flask(__name__)
 config['database'] = 'tDB'  # add new database to config dict
 cnxn = mysql.connector.connect(**config)
 cursor = cnxn.cursor(dictionary=True)
-cursor.execute('set max_allowed_packet=67108864')
-cnxn.commit()
+
 cursor.execute("SELECT * FROM Customers")
 li = []
 i = 0
