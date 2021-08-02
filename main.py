@@ -27,6 +27,8 @@ app = Flask(__name__)
 config['database'] = 'tDB'  # add new database to config dict
 cnxn = mysql.connector.connect(**config)
 cursor = cnxn.cursor(dictionary=True)
+cursor.execute('set max_allowed_packet=67108864')
+cnxn.commit()
 cursor.execute("SELECT * FROM Customers")
 li = []
 i = 0
@@ -230,9 +232,6 @@ def Search():
             li.append(row)
         data = {'customer': li}
 
-    config['database'] = 'tDB'  # add new database to config dict
-    cnxn = mysql.connector.connect(**config)
-    cursor = cnxn.cursor(buffered=True)
 
     if request.method=='POST':
         target = request.form.get('target')
@@ -538,9 +537,7 @@ def Months():
         return data
 
     def updatedb(month, index, date,list,name,charge,payment,notes,req,tax):
-        config['database'] = 'tDB'  # add new database to config dict
-        cnxn = mysql.connector.connect(**config)
-        cursor = cnxn.cursor(buffered=True)
+
         if(month=='JUL'):
 
             cursor.execute("SELECT JULT FROM Customers WHERE Name=%s",(name,))
