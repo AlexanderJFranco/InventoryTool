@@ -363,6 +363,7 @@ def Results():
                            (mbalance, name))
             cnxn.commit()
         if (month == 'AUG'):
+
             cursor.execute("UPDATE Customers SET req=%s, AUG=%s , AUGP = %s , Charge= %s, Notes=%s  WHERE Name=%s",
                            (req, list, payment, charge, notes, name))
             cnxn.commit()
@@ -446,7 +447,6 @@ def Results():
         data = {'customer': li}
 
     if request.method == 'POST':
-        print("NOT THERE")
         notes = request.form.get('note')
         payment = request.form.get('payment')
         charge = request.form.get('charge')
@@ -668,8 +668,12 @@ def Months():
                            (float(mbalance)+float(y), name))
             cnxn.commit()
         if(month=='AUG'):
-            cursor.execute("SELECT AUGT FROM Customers WHERE Name=%s",(name,))
-            x = cursor.fetchone()
+            config['database'] = 'tDB'  # add new database to config dict
+            cnt = mysql.connector.connect(**config)
+            cur = cnt.cursor(dictionary=True)
+            cur.execute("SELECT AUGT FROM Customers WHERE Name=%s",(name,))
+            x = cur.fetchone()
+            cur.close()
             if(tax!='0'):
                 y = float(x['AUGT'])+float(tax)+(float(tax)*.07)
             else:
