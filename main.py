@@ -602,6 +602,7 @@ def addCustomer():
 
 @app.route('/Monthly', methods=['POST','GET','ROUTE'])
 def Months():
+
     def getData():
         config['database'] = 'tDB'  # add new database to config dict
         cnxn = mysql.connector.connect(**config)
@@ -615,6 +616,10 @@ def Months():
         return data
 
     def updatedb(month, index, date,list,name,charge,payment,notes,req,tax):
+        config['database'] = 'tDB'  # add new database to config dict
+        cnxn = mysql.connector.connect(**config)
+        cursor = cnxn.cursor(dictionary=True)
+
         config['database'] = 'tDB'  # add new database to config dict
         cnt = mysql.connector.connect(**config)
         cur = cnt.cursor(dictionary=True)
@@ -853,7 +858,7 @@ def Months():
         for row in cursor:
             li.append(row)
         data = {'customer': li}
-
+        cnxn.close()
     if request.method=='POST':
         notes = request.form.get('note')
         payment = request.form.get('payment')
