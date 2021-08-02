@@ -230,6 +230,9 @@ def Search():
             li.append(row)
         data = {'customer': li}
 
+    config['database'] = 'tDB'  # add new database to config dict
+    cnxn = mysql.connector.connect(**config)
+    cursor = cnxn.cursor(buffered=True)
 
     if request.method=='POST':
         target = request.form.get('target')
@@ -535,6 +538,9 @@ def Months():
         return data
 
     def updatedb(month, index, date,list,name,charge,payment,notes,req,tax):
+        config['database'] = 'tDB'  # add new database to config dict
+        cnxn = mysql.connector.connect(**config)
+        cursor = cnxn.cursor(buffered=True)
         if(month=='JUL'):
 
             cursor.execute("SELECT JULT FROM Customers WHERE Name=%s",(name,))
@@ -672,7 +678,7 @@ def Months():
                 y = float(x['AUGT'])+float(tax)+(float(tax)*.07)
             else:
                 y = float(x['AUGT'])
-            cursor.execute("UPDATE Customers SET req=%s, AUG=%s , AUGP = %s , Charge= %s, Notes=%s,AUGT=%s  WHERE Name=%s",(req,list,payment,charge,notes,y,name))
+            cursor.execute("UPDATE Customers SET req=%s, AUG=%s , AUGP = %s , Charge= %s, Notes=%s , AUGT=%s  WHERE Name=%s",(req,list,payment,charge,notes,y,name))
             cnxn.commit()
 
             mbalance = len(list.split(','))
