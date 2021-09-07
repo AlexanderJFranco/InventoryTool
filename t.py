@@ -1,5 +1,6 @@
 import mysql.connector
 from mysql.connector.constants import ClientFlag
+import pandas as pd
 import pprint
 config = {
     'user': 'root',
@@ -16,8 +17,10 @@ cnxn = mysql.connector.connect(**config)
 cursor = cnxn.cursor(dictionary=True)
 name='AA'
 #cursor.execute("ALTER TABLE Customers DROP JULT ")
-cursor.execute("ALTER TABLE Customers ADD DECT VARCHAR(50) DEFAULT '0'")
+#cursor.execute("ALTER TABLE Customers ADD DECT VARCHAR(50) DEFAULT '0'")
 #cursor.execute("UPDATE Customers SET JULT = '0' WHERE  Name='AA';")
-#cursor.execute("SELECT * FROM Customers ORDER BY Name ASC")
-cnxn.commit()
-print(cursor.fetchall())
+sql_query = cursor.execute("SELECT * FROM Customers ORDER BY Name ASC")
+#cnxn.commit()
+df = pd.DataFrame(cursor.fetchall())
+print(df)
+#df.to_csv (r'C:\Users\lxfra\Downloads\export_data.csv', index = False) # place 'r' before the path name
