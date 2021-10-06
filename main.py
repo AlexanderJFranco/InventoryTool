@@ -799,6 +799,8 @@ def Months():
         if(month=='SEP'):
             cur.execute("SELECT SEPT FROM Customers WHERE Name=%s",(name,))
             x = cur.fetchone()
+            cur.execute("SELECT SEPP FROM Customers WHERE Name=%s",(name,))
+            z = cur.fetchone()
             if(tax!='0'):
                 y = float(x['SEPT'])+float(tax)+(float(tax)*.07)
             else:
@@ -814,6 +816,8 @@ def Months():
             cursor.execute("UPDATE Customers SET SEPB=%s WHERE Name=%s",
                            (float(mbalance)+float(y), name))
             cnxn.commit()
+
+
         if(month=='OCT'):
             cur.execute("SELECT OCTT FROM Customers WHERE Name=%s",(name,))
             x = cur.fetchone()
@@ -853,9 +857,9 @@ def Months():
 
         cursor.execute("SELECT JANB,FEBB,MARB,APRB,MAYB,JUNB,JULB,AUGB,SEPB,OCTB,NOVB,DECB FROM Customers WHERE Name =%s ",(name,))
         total=0
+
         for row in cursor:
            total = float(row['JANB'])+float(row['FEBB'])+float(row['MARB'])+float(row['APRB'])+float(row['MAYB'])+float(row['JUNB'])+float(row['JULB'])+float(row['AUGB'])+float(row['SEPB'])+float(row['OCTB'])+float(row['NOVB'])+float(row['DECB'])
-           print(total)
         cursor.execute("UPDATE Customers SET Balance=%s WHERE Name=%s",
                         (total, name))
         cnxn.commit()
@@ -868,9 +872,9 @@ def Months():
         cnxn.close()
         cur.close()
     if request.method=='POST':
-        temp = request.form.get('current')
+        temp = str(request.form.get('current'))
         notes = request.form.get('note')
-        payment = request.form.get('payment')
+        payment = str(request.form.get('payment'))
         charge = request.form.get('charge')
         date = request.form.get('time')
         name = request.form.get('name')
@@ -879,9 +883,11 @@ def Months():
         test = request.form.get('mon')
         req = request.form.get('req')
         tax = request.form.get('tax')
-        print(payment+'/'+temp)
+        if(temp=="None"):
+            temp=0;
+        if(payment=="None"):
+            payment=0;
         payment= float(payment)+float(temp)
-        print(payment)
         if('-' in date ):
 
             t = date.split('-')
