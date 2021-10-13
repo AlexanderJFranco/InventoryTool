@@ -1,1 +1,8 @@
-{"customer": []}
+sql_query = cursor.execute("""BEGIN TRANSACTION;
+INSERT INTO Customers_final Name, req, Notes, Charge, Balance
+SELECT Name, req, Notes, Charge, Balance
+FROM Customers;
+
+COMMIT;
+                            
+""")
