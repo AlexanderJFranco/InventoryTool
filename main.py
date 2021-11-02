@@ -815,16 +815,16 @@ def Months():
                            (float(mbalance) + float(y), name))
             cnxn.commit()
         if (month == 'NOV'):
-            cur.execute("SELECT NOCT FROM Customers WHERE Name=%s", (name,))
+            cur.execute("SELECT NOVT FROM Customers WHERE Name=%s", (name,))
             x = cur.fetchone()
-            cur.execute("SELECT NOCP FROM Customers WHERE Name=%s", (name,))
+            cur.execute("SELECT NOVP FROM Customers WHERE Name=%s", (name,))
             z = cur.fetchone()
             if (tax != '0'):
-                y = float(x['NOCT']) + float(tax) + (float(tax) * .07)
+                y = float(x['NOVT']) + float(tax) + (float(tax) * .07)
             else:
-                y = float(x['NOCT'])
+                y = float(x['NOVT'])
             cursor.execute(
-                "UPDATE Customers SET req=%s, NOC=%s , NOCP = %s , Charge= %s, Notes=%s,NOCT=%s  WHERE Name=%s",
+                "UPDATE Customers SET req=%s, NOV=%s , NOVP = %s , Charge= %s, Notes=%s,NOvT=%s  WHERE Name=%s",
                 (req, list, payment, charge, notes, y, name))
             cnxn.commit()
 
@@ -832,7 +832,7 @@ def Months():
             mbalance = mbalance * float(charge) - float(payment)
             mbalance = round(mbalance, 2)
 
-            cursor.execute("UPDATE Customers SET NOCB=%s WHERE Name=%s",
+            cursor.execute("UPDATE Customers SET NOVB=%s WHERE Name=%s",
                            (float(mbalance) + float(y), name))
             cnxn.commit()
         if (month == 'SEP'):
